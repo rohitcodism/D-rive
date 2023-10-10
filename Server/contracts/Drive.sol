@@ -37,7 +37,22 @@ function allow(address _user) external {
 //revoking user access
 function disallow(address _user) external {
     ownership[msg.sender][_user] = false;
-    accessList[msg.sender].push(Access(_user, false));
+    for(uint i = 0;i<accessList[msg.sender].length;i++){
+        if(accessList[msg.sender][i].user == _user){
+            accessList[msg.sender][i].access = false;
+        }
+    }
+}
+
+//return the image urls
+function display(address _user) external view returns(string[] memory _url){
+    require(_user == msg.sender || ownership[_user][msg.sender] == true, "Only owner can display the images.");
+    return value[_user];
+}
+
+//shows the liat of the shared access users
+function shareAccess() public view returns(Access[] memory){
+    return accessList[msg.sender];
 }
 
 }

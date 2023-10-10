@@ -1,0 +1,23 @@
+{
+  "name": "d-rive",
+  "version": "1.0.0",
+  "description": "Decentralized version of google drive",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohitcodism/D-rive.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rohitcodism/D-rive/issues"
+  },
+  "homepage": "https://github.com/rohitcodism/D-rive#readme",
+  "devDependencies": {
+    "hardhat": "^2.18.0"
+  }
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { ethers } from 'ethers';
 import Drive from "../../../Server/artifacts/contracts/Drive.sol/Drive.json"
+import { Navbar } from './Components/Navbar';
 
 function App() {
 
@@ -45,7 +46,7 @@ function App() {
 
   return (
     <>
-      <h1>App</h1>
+      <Navbar />
     </>
   )
 }

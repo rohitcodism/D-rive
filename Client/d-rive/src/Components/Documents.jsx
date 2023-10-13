@@ -1,9 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import {Navbar} from "./Navbar"
 
 export const Documents = () => {
     return(
         <Box>
-            <h3>Documents</h3>
+            <Navbar />
+            <Typography variant="h4" color="initial" sx={{fontFamily : "Rubik, sans-serif", fontWeight : "bold", paddingBottom : "2rem", paddingTop: "4rem"}} gutterBottom>Documents</Typography>
         </Box>
     );
 }

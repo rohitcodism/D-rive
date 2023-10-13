@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Upload } from './Components/Upload';
 import { Documents } from './Components/Documents';
 import { Others } from './Components/Others';
+import { Display } from './Components/Display';
 
 function App() {
 
@@ -52,7 +53,8 @@ function App() {
     <Container sx={{width : "100vw", padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', margin: "auto", height : "100vh"}}>
       <Routes>
         <Route path='/' element={<Drive />}/>
-        <Route path='/images' element={<Upload />} />
+        <Route path='/images' element={<Display />} />
+        <Route path='/upload' element={<Upload account={account} contract={contract} provider={provider} />} />
         <Route path='/documents' element={<Documents />}/>
         <Route path='/others' element={<Others />} />
       </Routes>

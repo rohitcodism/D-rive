@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import { ethers } from 'ethers';
-import Drive from "../../../Server/artifacts/contracts/Drive.sol/Drive.json"
-import { Navbar } from './Components/Navbar';
 import { Container } from '@mui/material';
+import { Drive } from './Components/Drive';
+import { Routes, Route } from 'react-router-dom';
+import { Upload } from './Components/Upload';
+import { Documents } from './Components/Documents';
+import { Others } from './Components/Others';
 
 function App() {
 
@@ -47,7 +50,12 @@ function App() {
 
   return (
     <Container sx={{width : "100vw", padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', margin: "auto", height : "100vh"}}>
-      <Navbar />
+      <Routes>
+        <Route path='/' element={<Drive />}/>
+        <Route path='/images' element={<Upload />} />
+        <Route path='/documents' element={<Documents />}/>
+        <Route path='/others' element={<Others />} />
+      </Routes>
     </Container>
   )
 }

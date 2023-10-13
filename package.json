@@ -19,5 +19,8 @@
   "homepage": "https://github.com/rohitcodism/D-rive#readme",
   "devDependencies": {
     "hardhat": "^2.18.0"
+  },
+  "dependencies": {
+    "lucide-react": "^0.286.0"
   }
 }

@@ -27,7 +27,7 @@ export const Upload = ({ account, contract, provider }) => {
                 console.log("Before Axios")
                 const resFile = await axios({
                     method: "post",
-                    url: "https://api.pinata.cloud/pinnig/pinFileToIPFS",
+                    url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
                     data: formData,
                     headers: {
                         pinata_api_key: "8ef085ddd1e4817de4f1",
@@ -39,23 +39,22 @@ export const Upload = ({ account, contract, provider }) => {
                 const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
                 console.log(ImgHash); // hash of the uploaded image
             } catch (error) {
-                console.error(error)
+                alert(error)
             }
         }
     }
 
     const retrieveFile = (event) => {
-        console.log(uploadRef);
-        const data = uploadRef.current.files[0];
+        const data = event.target.files[0];
         console.log(data);
-        const reader = new FileReader();
+        const reader = new window.FileReader();
         if (data) {
-            reader.readAsDataURL(data);
+            reader.readAsArrayBuffer(data);
             console.log('data read')
-            reader.onload = () => {
+            reader.onloadend = () => {
                 console.log('internal function called')
-                setFile(data);
-                console.log(file);
+                setFile(event.target.files[0]) ? console.log("data set") : console.log(`not set`);
+                console.log(`Set file : ${file}`);
             }
             console.log(event.target.files[0].name);
             setFileName(event.target.files[0].name);

@@ -1,15 +1,11 @@
-// 1. handle image : upload image to ipfs
-// 2. Retrieve file
-
-
-
-import { Button, Container } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import { UploadCloudIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { Paperclip } from "lucide-react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import "../Styles/Swal.css"
+import "../Styles/Swal.css";
+import "../Styles/Animation.css"
 
 export const Upload = ({ account, contract, provider }) => {
 
@@ -36,6 +32,7 @@ export const Upload = ({ account, contract, provider }) => {
                 });
                 const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
                 console.log(ImgHash); // hash of the uploaded image
+                contract.addd(account, ImgHash);
                 Swal.fire({
                     customClass : {
                         popup : "custom-done",
@@ -48,6 +45,8 @@ export const Upload = ({ account, contract, provider }) => {
                     confirmButtonText: "Cool",
                     showCloseButton: "true",
                 })
+                setFileName("No Image Selected");
+                setFile(null);
             } catch (error) {
                 Swal.fire({
                     customClass : {
@@ -67,15 +66,11 @@ export const Upload = ({ account, contract, provider }) => {
 
     const retrieveFile = (event) => {
         const data = event.target.files[0];
-        console.log(data);
         const reader = new window.FileReader();
         if (data) {
             reader.readAsArrayBuffer(data);
-            console.log('data read')
             reader.onloadend = () => {
-                console.log('internal function called')
-                setFile(event.target.files[0]) ? console.log("data set") : console.log(`not set`);
-                console.log(`Set file : ${file}`);
+                setFile(event.target.files[0]);
             }
             console.log(event.target.files[0].name);
             setFileName(event.target.files[0].name);
@@ -88,11 +83,12 @@ export const Upload = ({ account, contract, provider }) => {
     }
 
     return (
-        <Container sx={{ marginTop: "10rem", display: "flex", flexDirection: "row", justifyContent: "space-evenly", alignItems: "center" }}>
+        <Container sx={{ marginTop: "10rem", display: "flex", flexDirection: "column", justifyContent: "space-evenly", alignItems: "center" }}>
             <form className="form" onSubmit={handleUpload} style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly", alignItems: "center", width: "100%"}}>
-                <Button variant="contained" LinkComponent="label" endIcon={<Paperclip />} onClick={handleClick} sx={{ backgroundColor: "#242424", border: "2px solid #00DFA2", color: "#00DFA2", cursor: "pointer", borderRadius: "15px", width: "150px", height: "60px", fontFamily: "Rubik, sans-serif", fontWeight: "bold", "&:hover": { backgroundColor: "#242424", border: "2px solid #00DFA2", color: "#00DFA2" } }}>Choose file<input type="file" ref={uploadRef} hidden onChange={retrieveFile} /></Button>
+                <Button id="buttonX" variant="contained" endIcon={<Paperclip />} onClick={handleClick}>Choose file<input type="file" ref={uploadRef} hidden onChange={retrieveFile} /></Button>
                 <Button type="submit" variant="contained" LinkComponent="label" endIcon={<UploadCloudIcon />} sx={{ backgroundColor: "#00DFA2", cursor: "pointer", borderRadius: "15px", width: "120px", height: "40px", fontFamily: "Rubik, sans-serif", fontWeight: "bold", "&:hover": { backgroundColor: "#242424", border: "2px solid #00DFA2", color: "#00DFA2" } }}>Upload</Button>
             </form>
+            {account ? <Typography variant="h5" color="initial" sx={{fontFamily : "Rubik, sans-serif", fontWeight : "bold", paddingBottom : "2rem", paddingTop: "4rem"}} gutterBottom>{account}</Typography> : <Button variant="contained" sx={{marginTop : "10rem", width : "100px", height : "40px", borderRadius : "20px", "&:hover" : {backgroundColor : "#242424", border : "2px solid #687EFF", color : "#687EFF"}}}>Sign in</Button>}
         </Container>
     );
 }

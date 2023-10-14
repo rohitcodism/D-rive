@@ -52,7 +52,7 @@ function App() {
   return (
     <Container sx={{width : "100vw", padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', margin: "auto", height : "100vh"}}>
       <Routes>
-        <Route path='/' element={<Drive />}/>
+        <Route path='/' element={<Drive account={account} />}/>
         <Route path='/images' element={<Display />} />
         <Route path='/upload' element={<Upload account={account} contract={contract} provider={provider} />} />
         <Route path='/documents' element={<Documents />}/>

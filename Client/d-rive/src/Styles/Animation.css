@@ -1,0 +1,28 @@
+#buttonX {
+    background-color: #242424;
+    border: 2px solid #FFCD4B;
+    color: #FFCD4B;
+    cursor: pointer;
+    border-radius: 15px;
+    width: 150px;
+    height: 60px;
+    font-family: Rubik, sans-serif;
+    font-weight: bold;
+}
+
+#buttonX:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    background-color: #242424;
+}
+
+#buttonShare {
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+    font-family: Rubik, sans-serif;
+    font-weight: medium;
+    width: 100px;
+    border-radius: 10px;
+    align-self: flex-end;
+    transition: all 0.3s ease-in-out;
+}

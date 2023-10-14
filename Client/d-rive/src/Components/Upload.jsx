@@ -8,6 +8,8 @@ import { UploadCloudIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { Paperclip } from "lucide-react";
 import axios from "axios";
+import Swal from "sweetalert2";
+import "../Styles/Swal.css"
 
 export const Upload = ({ account, contract, provider }) => {
 
@@ -16,15 +18,12 @@ export const Upload = ({ account, contract, provider }) => {
     const [fileName, setFileName] = useState(null)
 
     const handleUpload = async (event) => {
-        console.log(file);
-        console.log(`function called`);
         event.preventDefault();
         if (file) {
             try {
                 const formData = new FormData();
                 formData.append("file", file);
 
-                console.log("Before Axios")
                 const resFile = await axios({
                     method: "post",
                     url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
@@ -35,11 +34,33 @@ export const Upload = ({ account, contract, provider }) => {
                         "Content-Type":"multipart/form-data",
                     },
                 });
-                console.log(`pinata worked`)
                 const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
                 console.log(ImgHash); // hash of the uploaded image
+                Swal.fire({
+                    customClass : {
+                        popup : "custom-done",
+                        confirmButton : "button-noError"
+                    },
+                    background : "#242424",
+                    icon: 'success',
+                    title: "Yep !!",
+                    text : "Uploaded successfully",
+                    confirmButtonText: "Cool",
+                    showCloseButton: "true",
+                })
             } catch (error) {
-                alert(error)
+                Swal.fire({
+                    customClass : {
+                        popup : "custom-error",
+                        confirmButton : "button-error"
+                    },
+                    background : "#242424",
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    confirmButtonText :"Okay",
+                    showCloseButton :true,
+                })
             }
         }
     }

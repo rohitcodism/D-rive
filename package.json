@@ -21,8 +21,10 @@
     "hardhat": "^2.18.0"
   },
   "dependencies": {
+    "@sweetalert2/themes": "^5.0.15",
     "axios": "^1.5.1",
     "form-data": "^4.0.0",
-    "lucide-react": "^0.286.0"
+    "lucide-react": "^0.286.0",
+    "sweetalert2": "^11.7.32"
   }
 }

@@ -1,0 +1,22 @@
+.custom-done {
+    font-family: Rubik, sans-serif;
+    color: #FFFFFF;
+}
+
+.button-noError {
+    font-family: Rubik, sans-serif;
+    color: #FFFFFF;
+    background-color: #A7D397;
+}
+
+.button-error {
+    font-family: Rubik, sans-serif;
+    color: #FFFFFF;
+    background-color: #F2A2A2;
+}
+
+
+.custom-error {
+    font-family: Rubik, sans-serif;
+    color: #FFFFFF;
+}

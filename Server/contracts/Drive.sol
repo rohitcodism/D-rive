@@ -13,7 +13,7 @@ contract Drive {
     mapping(address => mapping(address => bool)) prevData;
 
 
-function addd(address _user, string calldata url) external{
+function add(address _user, string calldata url) external{
     value[_user].push(url);
 }
 

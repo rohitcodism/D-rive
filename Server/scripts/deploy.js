@@ -2,10 +2,10 @@ const hre = require("hardhat");
 
 
 async function main() {
-    const Drive = await hre.ethers.deployContract("Drive");
-    const drive = await Drive.waitForDeployment();
+    const Drive = await hre.ethers.getContractFactory("Drive");
+    const drive = await Drive.deploy();
 
-    console.log(`Module deployed to :  ${drive.address}`);
+    console.log(`Module deployed to :  ${drive}`);
 }
 
 main()
@@ -14,4 +14,3 @@ main()
     process.exitCode(1);
 });
 
-// 0x5fbdb2315678afecb367f032d93f642f64180aa3

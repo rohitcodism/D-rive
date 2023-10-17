@@ -1,4 +1,4 @@
-import { Box, ImageList, Typography } from "@mui/material";
+import { Box, ImageList, ImageListItem, Typography } from "@mui/material";
 import { Navbar } from "./Navbar";
 import { useState } from "react";
 
@@ -11,7 +11,7 @@ export const Display = ({ account, contract }) => {
         account && contract ? console.log(`Display : ${account}, ${contract.address}`) : "error";
         try {
             dataList = await contract.display(account);
-            console.log(`Data List : ${dataList}`)
+            data ? console.log(`Data List : ${dataList}`) : console.log(`didn't get data`);
         } catch (error) {
             console.error(error);
         }
@@ -22,7 +22,7 @@ export const Display = ({ account, contract }) => {
             const images = dataList.map((item, i) =>{
                 return(
                     <a href={item} key={`a-${i}`} target="_blank" rel="noopener noreferrer">
-                        <img src={item} alt={`img-${i}`} key={`Image-${i}`} className="image-List"/>
+                        <img src={item} alt={`img-${i}`} key={`Image-${i}`} className="image-List" style={{height: "200px", width : "160px"}}/>
                     </a>
                 );
             })
@@ -48,8 +48,33 @@ export const Display = ({ account, contract }) => {
                 >
                     {data}
                 </ImageList> */}
-                <div className="img-list">{data}</div>
+                <div style={{height : "450px", width : "80%"}}>{data}</div>
             </Box>
         </Box>
     );
 }
+
+/* {
+    "type": "a",
+    "key": "a-2",
+    "ref": null,
+    "props": {
+        "href": "https://gateway.pinata.cloud/ipfs/QmX6cfPU2kVVbp2ybQc9tfePPDRayeVAiqqyt1NcXwjqv4",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "children": {
+            "type": "img",
+            "key": "Image-2",
+            "ref": null,
+            "props": {
+                "src": "https://gateway.pinata.cloud/ipfs/QmX6cfPU2kVVbp2ybQc9tfePPDRayeVAiqqyt1NcXwjqv4",
+                "alt": "img-2",
+                "className": "image-List"
+            },
+            "_owner": null,
+            "_store": {}
+        }
+    },
+    "_owner": null,
+    "_store": {}
+} */

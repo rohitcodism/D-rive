@@ -5,9 +5,12 @@ import { Paperclip } from "lucide-react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "../Styles/Swal.css";
-import "../Styles/Animation.css"
+import "../Styles/Animation.css";
+import { ethers } from "ethers";
 
-export const Upload = ({ account, contract, provider }) => {
+export const Upload = ({ account, contract }) => {
+
+    console.log(`Upload Component : ${account} \n Contract : ${contract}`);
 
     const uploadRef = useRef(null);
     const [file, setFile] = useState(null)
@@ -32,7 +35,7 @@ export const Upload = ({ account, contract, provider }) => {
                 });
                 const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
                 console.log(ImgHash); // hash of the uploaded image
-                contract.addd(account, ImgHash);
+                contract.add(account, ImgHash);
                 Swal.fire({
                     customClass : {
                         popup : "custom-done",
@@ -60,6 +63,7 @@ export const Upload = ({ account, contract, provider }) => {
                     confirmButtonText :"Okay",
                     showCloseButton :true,
                 })
+                console.log(error)
             }
         }
     }
@@ -85,10 +89,10 @@ export const Upload = ({ account, contract, provider }) => {
     return (
         <Container sx={{ marginTop: "10rem", display: "flex", flexDirection: "column", justifyContent: "space-evenly", alignItems: "center" }}>
             <form className="form" onSubmit={handleUpload} style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly", alignItems: "center", width: "100%"}}>
-                <Button id="buttonX" variant="contained" endIcon={<Paperclip />} onClick={handleClick}>Choose file<input type="file" ref={uploadRef} hidden onChange={retrieveFile} /></Button>
-                <Button type="submit" variant="contained" LinkComponent="label" endIcon={<UploadCloudIcon />} sx={{ backgroundColor: "#00DFA2", cursor: "pointer", borderRadius: "15px", width: "120px", height: "40px", fontFamily: "Rubik, sans-serif", fontWeight: "bold", "&:hover": { backgroundColor: "#242424", border: "2px solid #00DFA2", color: "#00DFA2" } }}>Upload</Button>
+                <Button  disabled={file || !account} id="buttonX" variant="contained" endIcon={<Paperclip />} onClick={handleClick}>Choose file<input type="file" ref={uploadRef} hidden onChange={retrieveFile} /></Button>
+                <Button disabled={!file || !account} type="submit" variant="contained" LinkComponent="label" endIcon={<UploadCloudIcon />} sx={{ backgroundColor: "#00DFA2", cursor: "pointer", borderRadius: "15px", width: "120px", height: "40px", fontFamily: "Rubik, sans-serif", fontWeight: "bold", "&:hover": { backgroundColor: "#242424", border: "2px solid #00DFA2", color: "#00DFA2" } }}>Upload</Button>
             </form>
-            {account ? <Typography variant="h5" color="initial" sx={{fontFamily : "Rubik, sans-serif", fontWeight : "bold", paddingBottom : "2rem", paddingTop: "4rem"}} gutterBottom>{account}</Typography> : <Button variant="contained" sx={{marginTop : "10rem", width : "100px", height : "40px", borderRadius : "20px", "&:hover" : {backgroundColor : "#242424", border : "2px solid #687EFF", color : "#687EFF"}}}>Sign in</Button>}
+            {account ? <Typography variant="h6" color="initial" sx={{fontFamily : "Rubik, sans-serif", fontWeight : "bold", paddingBottom : "2rem", paddingTop: "4rem"}} gutterBottom>{`Account : ${account}`}</Typography> : <Button variant="contained" sx={{marginTop : "10rem", width : "100px", height : "40px", borderRadius : "20px", "&:hover" : {backgroundColor : "#242424", border : "2px solid #687EFF", color : "#687EFF"}}}>Connect</Button>}
         </Container>
     );
 }

@@ -18,11 +18,16 @@
   },
   "homepage": "https://github.com/rohitcodism/D-rive#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "hardhat": "^2.18.0"
   },
   "dependencies": {
+    "@metamask/ethjs-query": "^0.5.0",
+    "@pinata/sdk": "^2.1.0",
     "@sweetalert2/themes": "^5.0.15",
     "axios": "^1.5.1",
+    "babel-core": "^6.26.3",
+    "buffer": "^6.0.3",
     "cartoon-avatar": "^1.0.2",
     "form-data": "^4.0.0",
     "lucide-react": "^0.286.0",

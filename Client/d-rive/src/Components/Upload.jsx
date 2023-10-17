@@ -12,8 +12,6 @@ export const Upload = ({ account, contract }) => {
 
     console.log(`Upload Component : ${account} \n Contract : ${contract}`);
 
-    const superProvider  = new ethers.providers.Web3Provider(window.ethereum)
-
     const uploadRef = useRef(null);
     const [file, setFile] = useState(null)
     const [fileName, setFileName] = useState(null)
@@ -94,7 +92,7 @@ export const Upload = ({ account, contract }) => {
                 <Button  disabled={file || !account} id="buttonX" variant="contained" endIcon={<Paperclip />} onClick={handleClick}>Choose file<input type="file" ref={uploadRef} hidden onChange={retrieveFile} /></Button>
                 <Button disabled={!file || !account} type="submit" variant="contained" LinkComponent="label" endIcon={<UploadCloudIcon />} sx={{ backgroundColor: "#00DFA2", cursor: "pointer", borderRadius: "15px", width: "120px", height: "40px", fontFamily: "Rubik, sans-serif", fontWeight: "bold", "&:hover": { backgroundColor: "#242424", border: "2px solid #00DFA2", color: "#00DFA2" } }}>Upload</Button>
             </form>
-            {account ? <Typography variant="h6" color="initial" sx={{fontFamily : "Rubik, sans-serif", fontWeight : "bold", paddingBottom : "2rem", paddingTop: "4rem"}} gutterBottom>{`Account : ${account}`}</Typography> : <Button variant="contained" sx={{marginTop : "10rem", width : "100px", height : "40px", borderRadius : "20px", "&:hover" : {backgroundColor : "#242424", border : "2px solid #687EFF", color : "#687EFF"}}} onCLick = {async() => {await superProvider.send("eth_requestAccounts"); console.log("called")}}>Connect</Button>}
+            {account ? <Typography variant="h6" color="initial" sx={{fontFamily : "Rubik, sans-serif", fontWeight : "bold", paddingBottom : "2rem", paddingTop: "4rem"}} gutterBottom>{`Account : ${account}`}</Typography> : <Button variant="contained" sx={{marginTop : "10rem", width : "100px", height : "40px", borderRadius : "20px", "&:hover" : {backgroundColor : "#242424", border : "2px solid #687EFF", color : "#687EFF"}}}>Connect</Button>}
         </Container>
     );
 }

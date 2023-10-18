@@ -40,7 +40,7 @@ function App() {
         console.log(address);
         setAccount(address);
 
-        const contractAddress = "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512";
+        const contractAddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
         const contract =  new Contract(contractAddress, Drive.abi, signer) // to create an instance of a contract we need these three things
         {contract ? console.log(contract) : "Contract Error"}
         setContract(contract);

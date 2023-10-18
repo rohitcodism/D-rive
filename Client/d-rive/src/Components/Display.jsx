@@ -18,12 +18,14 @@ export const Display = ({ account, contract }) => {
 
         const isEmpty = Object.keys(dataList).length == 0;
 
-        if(!isEmpty){
-            const images = dataList.map((item, i) =>{
-                return(
-                    <a href={item} key={`a-${i}`} target="_blank" rel="noopener noreferrer">
-                        <img src={item} alt={`img-${i}`} key={`Image-${i}`} className="image-List" style={{height: "200px", width : "160px"}}/>
-                    </a>
+        if (!isEmpty) {
+            const images = dataList.map((item, i) => {
+                return (
+                    <ImageListItem key={`${item}-${i}`}>
+                        <a href={item} key={`a-${i}`} target="_blank" rel="noopener noreferrer">
+                            <img src={item} alt={`img-${i}`} key={`Image-${i}`} className="image-List" style={{ height: "200px", width: "160px" }} />
+                        </a>
+                    </ImageListItem>
                 );
             })
             if(!data)
@@ -40,7 +42,7 @@ export const Display = ({ account, contract }) => {
         <Box sx={{ display: "flex", flexDirection: "column" }}>
             <Navbar />
             <Typography variant="h4" color="initial" sx={{ fontFamily: "Rubik, sans-serif", fontWeight: "bold", paddingBottom: "2rem", paddingTop: "4rem" }} gutterBottom>Images</Typography>
-            <Box sx={{ height: "450px", width: "100%", overflowY: "scroll" }}>
+            <Box>
                 {/* <ImageList
                     variant="masonry"
                     cols={6}
@@ -48,7 +50,9 @@ export const Display = ({ account, contract }) => {
                 >
                     {data}
                 </ImageList> */}
-                <div style={{height : "450px", width : "80%"}}>{data}</div>
+                <ImageList sx={{ width: "100%", height: 450 }} cols={5} gap={1}>
+                    {data}
+                </ImageList>
             </Box>
         </Box>
     );
